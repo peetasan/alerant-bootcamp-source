@@ -6,18 +6,18 @@ steps:
       scriptType: bash
       scriptLocation: inlineScript
       inlineScript: |
-      set -euo pipefail
-      az aks get-credentials \
-      --resource-group "$(resourceGroup)" \
-      --name "$(aksName)" \
-      --file "$(kubeconfigPath)" \
-      --overwrite-existing
-      kubelogin convert-kubeconfig \
-      -l azurecli \
-      --kubeconfig "$(kubeconfigPath)"
-      kubectl --kubeconfig "$(kubeconfigPath)" apply \
-      -n "$(namespace)" \
-      -f "openshift/deployment.yaml"
-      kubectl --kubeconfig "$(kubeconfigPath)" apply \
-      -n "$(namespace)" \
-      -f "openshift/service.yaml"
+        set -euo pipefail
+        az aks get-credentials \
+          --resource-group "$(resourceGroup)" \
+          --name "$(aksName)" \
+          --file "$(kubeconfigPath)" \
+          --overwrite-existing
+        kubelogin convert-kubeconfig \
+          -l azurecli \
+          --kubeconfig "$(kubeconfigPath)"
+        kubectl --kubeconfig "$(kubeconfigPath)" apply \
+          -n "$(namespace)" \
+          -f "openshift/deployment.yaml"
+        kubectl --kubeconfig "$(kubeconfigPath)" apply \
+          -n "$(namespace)" \
+          -f "openshift/service.yaml"
