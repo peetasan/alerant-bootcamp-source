@@ -1,3 +1,4 @@
+pool: Default
 steps:
   - task: AzureCLI@2
     displayName: Get AKS credentials and deploy
