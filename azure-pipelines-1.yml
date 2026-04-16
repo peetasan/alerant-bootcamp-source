@@ -12,7 +12,7 @@ steps:
           --name "$(aksName)" \
           --file "$(kubeconfigPath)" \
           --overwrite-existing
-        kubelogin convert-kubeconfig \
+        az login convert-kubeconfig \
           -l azurecli \
           --kubeconfig "$(kubeconfigPath)"
         kubectl --kubeconfig "$(kubeconfigPath)" apply \
