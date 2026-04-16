@@ -18,7 +18,7 @@ steps:
           --kubeconfig "$(kubeconfigPath)"
         kubectl --kubeconfig "$(kubeconfigPath)" apply \
           -n "$(namespace)" \
-          -f "openshift/deployment.yaml"
+          -f "student10/deployment.yaml"
         kubectl --kubeconfig "$(kubeconfigPath)" apply \
           -n "$(namespace)" \
-          -f "openshift/service.yaml"
+          -f "student10/service.yaml"
