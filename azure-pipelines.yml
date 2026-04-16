@@ -1,17 +1,18 @@
-- task: Maven@4
-  inputs:
-    mavenPomFile: 'pom.xml'
-    publishJUnitResults: false
-    javaHomeOption: 'JDKVersion'
-    mavenVersionOption: 'Default'
-    mavenAuthenticateFeed: false
-    effectivePomSkip: false
-    sonarQubeRunAnalysis: false
+steps:
+  - task: Maven@4
+    inputs:
+      mavenPomFile: 'pom.xml'
+      publishJUnitResults: false
+      javaHomeOption: 'JDKVersion'
+      mavenVersionOption: 'Default'
+      mavenAuthenticateFeed: false
+      effectivePomSkip: false
+      sonarQubeRunAnalysis: false
 
-- task: CmdLine@2
-  inputs:
-    script: |
-      buildah bud --tls-verify=0 --format=docker -t
-      fasttrack.azurecr.io/bootcamp/demoapp_student10 -f Dockerfile .
-      buildah login -u ADO-Access -p 2NCxUbBldsi8QC4xN9Bjhkd8pNxw79tozkBUjGbrjJyCIISVoCKyJQQJ99CDACPV0roEqg7NAAABAZCRYHD0 fasttrack.azurecr.io
-      buildah push fasttrack.azurecr.io/bootcamp/student10
+  - task: CmdLine@2
+    inputs:
+      script: |
+        buildah bud --tls-verify=0 --format=docker -t
+        fasttrack.azurecr.io/bootcamp/demoapp_student10 -f Dockerfile .
+        buildah login -u ADO-Access -p 2NCxUbBldsi8QC4xN9Bjhkd8pNxw79tozkBUjGbrjJyCIISVoCKyJQQJ99CDACPV0roEqg7NAAABAZCRYHD0 fasttrack.azurecr.io
+        buildah push fasttrack.azurecr.io/bootcamp/student10
