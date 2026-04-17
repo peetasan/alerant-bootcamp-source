@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: fasttrack-springboot
+  name: fasttrack-springboot
+  namespace: student10
+spec:
+  replicas: 1
+  revisionHistoryLimit: 1
+  selector:
+    matchLabels:
+      app: fasttrack-springboot
+  template:
+    metadata:
+      labels:
+        app: fasttrack-springboot
+    spec:
+      containers:
+      - image: fasttrack.azurecr.io/bootcamp/demoapp_student10:latest
+        imagePullPolicy: Always
+        name: fasttrack-springboot
+        ports:
+        - containerPort: 8080
+          name: http
+          protocol: TCP
+        resources:
+          limits:
+            memory: 200Mi
+            cpu: 500m
+          requests:
+            memory: 100Mi
+            cpu: 100m
+        securityContext:
+          privileged: false
